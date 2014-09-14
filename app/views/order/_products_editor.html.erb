@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th><th>廠牌</th><th>型號</th><th>顏色</th><th>JAN</th><th>數量</th><th></th>
+    </tr>
+  </thead>
+  <tbody data-role="product-container">
+    <% products.each do |op| %>
+      <%= f.fields_for type, op, {child_index: op.product.id} do |item_form| %>
+        <% begin %>
+          <%= render :partial => 'order/product_editor', :locals => {item: item_form.object, form_prefix: item_form.instance_variable_get(:'@object_name')} %>
+        <% rescue => e %>
+          <tr class="danger"><td colspan="7">Program Error: <%=e%></td></tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+$(function() {
+  $("#products").products_editor({
+    product_url: '<%=order_product_tmpl_path%>',
+    form_prefix: '<%= f.instance_variable_get(:'@object_name')%>[<%=type%>_attributes]'
+  });
+});
+</script>

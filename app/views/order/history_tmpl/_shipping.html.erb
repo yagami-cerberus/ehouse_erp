@@ -1,0 +1,9 @@
+<div class="order-history">
+  <div class="order-summary">
+    <div class="order-object"><%= history.user.nickname %> 建立 出貨單#<%=history.data['shipping_id'] unless history.data.nil? %> </div>
+    <div class="order-at"><%= history.created_at %></div>
+  </div>
+  <div class="order-message">
+    <%= history.message%>
+  </div>
+</div>

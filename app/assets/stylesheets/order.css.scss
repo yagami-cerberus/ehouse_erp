@@ -1,0 +1,36 @@
+// Place all the styles related to the order controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.order-well {
+    background-color: #f7f4ec;
+}
+
+div.shipping-well {
+    background-color: #e8f1d1;
+}
+
+.order-history {
+    margin-bottom: 10px;
+    
+    .order-summary {
+        padding: 5px;
+        
+        .order-object {
+            display: inline-block;
+            width: 75%;
+        }
+        
+        .order-at {
+            display: inline-block;
+            width: 23%;
+            text-align: right;
+        }
+        
+        border-bottom: 1px #ddd solid;
+    }
+    
+    .order-message {
+        padding: 5px;
+    }
+}

@@ -1,0 +1,84 @@
+<% layout_title '採購單', @o %>
+<hr />
+
+<div>
+  <div class="pull-right"><%= format_status_flags @o.status_flags %></div>
+  由 <%= @o.created_by.nickname %> 在 <%= @o.created_at %> 建立
+</div>
+
+
+<div class="well well-sm order-well">
+  <div>採購單</div>
+  <%= render :partial => 'order/products', locals: {items: @o.order_products }%>
+  <div class="text-right">
+    <a class="btn btn-sm btn-info" data-products="[data-role=product-container] input:checked">
+      <i class="fa fa-truck"></i>
+      出貨
+    </a>
+  </div>
+</div>
+
+
+<% @o.shippings.each do |s| %>
+  <div class="well well-sm shipping-well">
+    <div>出貨單#<%=s.id%></div>
+    <%= render :partial => 'order/products', locals: {items: s.shipping_products } %>
+    <%= form_for [@o, s] do %>
+    <div class="text-right">
+      <button class="btn btn-sm btn-info" name="operation" value="received">
+        <i class="fa fa-download"></i>
+        簽收
+      </button>
+    </div>
+    <% end unless s.received %>
+  </div>
+<% end %>
+
+
+<% @o.order_histories.each do |h| %>
+  <% begin %>
+  <%= render :partial => "order/history_tmpl/#{h.action}", :locals => {:order => @o, :history => h} %>
+  <% rescue => e %>
+  <% raise unless ['development', 'test'].index(ENV['RAILS_ENV']).nil? %>
+  <div class="alert alert-danger">
+    <div><%= "由 #{h.user.nickname} 在 #{h.created_at}"%></div>
+    <div>處理 <%=h.action %> 類型記錄時發生錯誤</div>
+  </div>
+  <% %>
+  <% end %>
+<% end %>
+
+
+<hr />
+<%= form_for @o do %>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-2">註記</label>
+      <div class="col-sm-10 text-right form-inline">
+        <label>採購單狀態</label>
+        <select name="status" class="form-control input-sm">
+          <option value="">未變動</option>
+          <option value="padding">未處理</option>
+          <option value="ordering">下訂中</option>
+          <option value="ordering_and_shipping">下訂中/已出貨</option>
+          <option value="shipping">已出貨</option>
+          <option value="finished">完成</option>
+          <option value="cancel">撤銷</option>
+        </select>
+      </div>
+    </div>
+    <textarea name="comment" rows="5" class="form-control"></textarea>
+  </div>
+  <div class="form-group text-right">
+    <button class="btn btn-sm btn-primary" name="operation" value="update">
+      更新
+    </button>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+  $("#order-products-chkbox").checkbox_toggle("[data-role=product-container] input");
+  $("button[data-products], a[data-products]").create_shipping("<%=new_order_shipping_path @o%>")
+});
+</script>

@@ -1,0 +1,15 @@
+<% if f == 0 %>
+  <i class="fa fa-clock-o"></i> <label class="label label-warning"> 未處置</label>
+<% end %>
+<% if (f & (1 << 1)) > 0 %>
+  <i class="fa fa-refresh"></i> <label class="label label-info"> 下訂中</label>
+<% end %>
+<% if (f & (1 << 4)) > 0 %>
+  <i class="fa fa-truck"></i> <label class="label label-primary"> 已出貨</label>
+<% end %>
+<% if (f & (1 << 25)) > 0 %>
+  <i class="fa fa-check"></i> <label class="label label-success"> 已完成</label>
+<% end %>
+<% if (f & (1 << 26)) > 0 %>
+  <i class="fa fa-remove"></i> <label class="label label-default"> 已撤銷</label>
+<% end %>

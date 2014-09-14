@@ -1,0 +1,43 @@
+<% layout_title "產品", @p %>
+<hr />
+<div class="form-horizontal">
+  <% if @p.archived %>
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      <label class="label label-danger">已封存</label>
+    </div>
+  </div>
+  <% end %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">廠牌</label>
+    <div class="col-sm-4 form-control-static"><%= @p.manufacturer%></div>
+    <label class="col-sm-2 control-label">型號</label>
+    <div class="col-sm-4 form-control-static"><%= @p.model_id%></div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">顏色</label>
+    <div class="col-sm-4 form-control-static"><%= formated_color @p%></div>
+    <label class="col-sm-2 control-label">尺寸</label>
+    <div class="col-sm-4 form-control-static"><%= formated_size @p%></div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">價格</label>
+    <div class="col-sm-4 form-control-static"><%= formated_price @p%></div>
+  </div>
+  <div class="form-group">
+  </div>
+</div>
+<% if @p.related_products.present? %>
+<hr />
+<div class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">關連產品</label>
+    <div class="col-sm-4 form-control-static">
+      <% @p.related_products.each do |p| %>
+        <%= link_to "產品##{p.id}", p%> 顏色: <%= formated_color p %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+

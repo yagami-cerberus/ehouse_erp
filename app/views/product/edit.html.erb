@@ -1,0 +1,12 @@
+<% layout_title "產品", @p %>
+<hr />
+<%= form_for @p, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <%= render 'product/editor', :f => f %>
+  <div class="form-group">
+    <div class="col-sm-4 col-sm-offset-2">
+      <button type='submit' class='btn btn-sm btn-primary'>
+        <i class="fa fa-save"></i> 儲存
+      </button>
+    </div>
+  </div>
+<% end %>

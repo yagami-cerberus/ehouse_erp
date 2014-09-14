@@ -1,0 +1,25 @@
+<% layout_title "採購單" %>
+<hr />
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="table-id"></th>
+      <th>狀態</th>
+      <th>發訂時間</th><th>發訂人</th>
+      <th style="width: 50px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |o| %>
+    <tr>
+      <td><%= o.id %></td>
+      <td class="fn-label"><%= format_status_flags o.status_flags %></td>
+      <td><%= o.created_at %></td>
+      <td><%= o.created_by.nickname %></td>
+      <td>
+        <a href="<%= order_path(o)%>">詳細</a>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

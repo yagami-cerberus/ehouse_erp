@@ -1,0 +1,14 @@
+<%= fields_for form_prefix, item do |f| %>
+<tr data-product-id="<%= item.product.id %>">
+  <td>
+    <%= f.hidden_field :product_id %>
+    <%= item.product.id %>
+  </td>
+  <td><%= item.product.manufacturer %></td>
+  <td><%= item.product.model_id %></td>
+  <td><%= item.product.color%></td>
+  <td></td>
+  <td class="form-inline"><%= f.text_field :quantity, :class => 'form-control input-sm'%></td>
+</tr>
+<% end%>
+

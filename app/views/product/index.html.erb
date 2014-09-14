@@ -1,0 +1,30 @@
+<% layout_title "產品清單" %>
+<hr />
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="table-id"></th>
+      <th>廠牌</th><th>型號</th><th>顏色</th>
+      <th style="width: 130px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |p| %>
+    <tr>
+      <td><%=p.id%></td>
+      <td><%=p.manufacturer%></td>
+      <td><%=p.model_id%></td>
+      <td><%=p.color%></td>
+      <td>
+        <a href="<%=product_path(p)%>">詳細</a> |
+        <a href="<%=edit_product_path(p)%>">編輯</a> |
+        <% if p.never_use? %>
+        <%= link_to '刪除', p, :method => :delete, :data => {:confirm => '警告?'} %>
+        <% else %>
+        <%= link_to '封存', p, :method => :delete, :data => {:confirm => '警告?'} %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th><input type="checkbox" id="order-products-chkbox" /> #</th>
+      <th>廠牌</th><th>型號</th><th>顏色</th><th>JAN</th><th>數量</th><th></th>
+    </tr>
+  </thead>
+  <tbody data-role="product-container">
+    <% items.each do |op| %>
+      <td><input type="checkbox" value="<%= op.product.id%>" /> <%= op.product.id %></td>
+      <td><%= op.product.manufacturer %></td>
+      <td><%= op.product.model_id %></td>
+      <td><%= op.product.color%></td>
+      <td></td>
+      <td><%= op.quantity %></td>
+      <td></td>
+    <% end %>
+  </tbody>
+</table>

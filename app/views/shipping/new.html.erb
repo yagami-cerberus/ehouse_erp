@@ -1,0 +1,51 @@
+<% layout_title "新增出貨單" %>
+<hr />
+<%= form_for @s, url: { action: 'create' }, html: shared_form_attr do |f| %>
+<div class="well">
+  <div id="products">
+    <%= render :partial => 'order/products_editor', :locals =>  {f: f, type: :shipping_products, products: f.object.shipping_products} %>
+  </div>
+  <hr />
+  <div class="form-inline" id="new_product_form">
+    新增產品
+    #<input type="text" data-role="new-product-id" class="form-control input-sm" />
+    <button type="button" data-role="new-product-submit" class="btn btn-info btn-sm">
+      新增
+    </button>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-12">
+    <textarea name='comment' class='form-control', rows="5"><%=params[:comment]%></textarea>
+  </div>
+</div>
+<div class="text-right">
+  <label><input type="checkbox" name="last_shipping" <%=(params[:last_shipping])?"checked":""%>/> 本訂單所有項目已完成出貨</label>
+  <button class="btn btn-success">建立</button>
+</div>
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+  var $new_product_form = $("#new_product_form");
+  var $new_product_input = $("input[data-role=new-product-id]", $new_product_form);
+  var $new_product_btn = $("button[data-role=new-product-submit]", $new_product_form)
+  
+  $new_product_form.bind("data-submit", function() {
+    var product_id = $new_product_input.val();
+    if(product_id.match(/^\d+$/)) {
+      $("#products").trigger("add-product", [product_id])
+    } else {
+      alert('不正確的產品編號');
+    }
+  });
+  
+  $new_product_btn.bind("click", function(e) {
+    $new_product_form.trigger("data-submit");
+  });
+  
+  $new_product_input.press_enter(function() {
+    $new_product_form.trigger("data-submit");
+  });
+});
+</script>

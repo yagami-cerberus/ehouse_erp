@@ -1,0 +1,36 @@
+<div class="form-group">
+  <%= f.label :manufacturer, '廠牌', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :manufacturer, :class => 'form-control input-sm', :placeholder => '廠牌' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :model_id, '型號', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :model_id, :class => 'form-control input-sm', :placeholder => '型號' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :color, '顏色', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :color, :class => 'form-control input-sm', :placeholder => '顏色' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :price, '價格', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-jpy"></i></span>
+      <%= f.number_field :price, :class => 'form-control input-sm', :placeholder => '價格' %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">尺寸</label>
+  <div class="col-sm-10 form-inline">
+    寬 <%= f.text_field :width, :class => 'form-control input-sm', :placeholder => '寬' %> x 
+    深 <%= f.number_field :depth, :class => 'form-control input-sm', :placeholder => '深' %> x
+    高 <%= f.number_field :height, :class => 'form-control input-sm', :placeholder => '高' %> cm
+  </div>
+</div>
+<hr />
