@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'fafa#soso'
+  root 'portable#index'
   
   resources :product
   get 'order/product', :as => :order_product_tmpl
