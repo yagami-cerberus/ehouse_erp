@@ -7,6 +7,7 @@
   </thead>
   <tbody data-role="product-container">
     <% items.each do |op| %>
+    <tr>
       <td><input type="checkbox" value="<%= op.product.id%>" /> <%= op.product.id %></td>
       <td><%= op.product.manufacturer %></td>
       <td><%= op.product.model_id %></td>
@@ -14,6 +15,7 @@
       <td></td>
       <td><%= op.quantity %></td>
       <td></td>
+    </tr>
     <% end %>
   </tbody>
 </table>

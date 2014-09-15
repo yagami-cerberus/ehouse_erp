@@ -1,9 +1,10 @@
 <li>
-  <a href="<%= new_order_path %>"><i class="fa fa-lg fa-pencil-square-o"></i> 新增訂單</a>
+  
 </li>
 <li>
   <a><i class="fa fa-lg fa-shopping-cart"></i> 採購單</a>
   <ul class="collapse in">
+    <li><a href="<%= new_order_path %>"><i class="fa fa-lg fa-pencil-square-o"></i> 新增訂單</a></li>
     <li><a href="<%= order_index_path %>"><i class="fa fa-lg fa-inbox"></i> 處理中</a></li>
     <li><a href="<%= order_index_path %>/history"><i class="fa fa-lg fa-history"></i> 歷史訂單</a></li>
   </ul>

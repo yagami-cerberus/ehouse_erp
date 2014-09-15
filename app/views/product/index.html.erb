@@ -5,7 +5,9 @@
     <tr>
       <th class="table-id"></th>
       <th>廠牌</th><th>型號</th><th>顏色</th>
-      <th style="width: 130px;"></th>
+      <th style="width: 130px;" class="text-right">
+        <a href="<%= new_product_path %>">新增</a>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +17,7 @@
       <td><%=p.manufacturer%></td>
       <td><%=p.model_id%></td>
       <td><%=p.color%></td>
-      <td>
+      <td class="text-right">
         <a href="<%=product_path(p)%>">詳細</a> |
         <a href="<%=edit_product_path(p)%>">編輯</a> |
         <% if p.never_use? %>
